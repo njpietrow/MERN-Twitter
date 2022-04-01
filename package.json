@@ -1,0 +1,19 @@
+{
+  "name": "twitter",
+  "version": "1.0.0",
+  "description": "mern twitter",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/njpietrow/MERN-Twitter.git"
+  },
+  "author": "njpietrow",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/njpietrow/MERN-Twitter/issues"
+  },
+  "homepage": "https://github.com/njpietrow/MERN-Twitter#readme"
+}
