@@ -8,15 +8,14 @@ const passport = require('passport')
 const users = require('./routes/api/users')
 const tweets = require('./routes/api/tweets')
 
+// app.get("/", (req, res) => {
+//   res.send("I am the js app server message :)")
+// });
 
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
-
-// app.get("/", (req, res) => {
-//   res.send("I am the js app server message :)")
-// });
 
 app.use(passport.initialize());
 require('./config/passport')(passport);
@@ -32,4 +31,5 @@ app.use("/api/tweets", tweets);
   
   
 const port = process.env.PORT || 8080;
+// app.listen(port, () => console.log(`Server is running on port ${port}`) , (err) => console.log(err));
 app.listen(port, () => console.log(`Server is running on port ${port}`));

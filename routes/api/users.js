@@ -12,7 +12,7 @@ router.get('/test', (req, res) => {
   res.json({msg: 'This is the user route'})
 });
 
-//private auth route
+//private auth route for accessing user data on the frontend once logged in
 router.get('/current', 
   passport.authenticate('jwt', {session: false}), 
   (req, res) => {
@@ -87,6 +87,8 @@ router.post("/login", (req, res) => {
       if (isMatch) {
         const payload = { id: user.id, email: user.email };
 
+        // the user(the payload) is encoded into the jwt. The frontend will decode it
+        // to get the user object upon page refresh
         jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
           res.json({
             success: true,

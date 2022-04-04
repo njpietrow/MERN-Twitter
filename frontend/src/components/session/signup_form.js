@@ -16,11 +16,15 @@ class SignupForm extends React.Component {
     this.clearedErrors = false;
   }
 
+  // TODO: the demo code wanted to redirect to the login page after registering?
+  // Probably so that the user would then be prompted to login
+    // its weird but I've seen websites do it before
   componentWillReceiveProps(nextProps) {
     if (nextProps.signedIn === true) {
-      this.props.history.push('/tweets');
+      this.props.history.push('/login');
     }
 
+    // TODO: this should be assigned within componentDidUpdate
     this.setState({errors: nextProps.errors})
   }
 

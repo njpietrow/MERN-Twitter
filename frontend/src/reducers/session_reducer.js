@@ -1,3 +1,5 @@
+// DEPRECATED and replace by the sesssion api reducer
+
 import { RECEIVE_USER_LOGOUT } from '../actions/session_actions';
 
 const initialState = {

@@ -1,20 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-// We will create this component shortly
 import Root from './components/root';
-
-// We set this up in the last section
 import configureStore from './store/store';
+import { logout } from './actions/session_actions';
 
 // We will use this to parse the user's session token
 import jwt_decode from 'jwt-decode';
 
-// The session utility we just created
+// The session utility we created to set the auth token header in all axios requests
 import { setAuthToken } from './util/session_api_util';
 
-// We have not created this action yet, but will do so in the next step
-import { logout } from './actions/session_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;

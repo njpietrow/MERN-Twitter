@@ -5,11 +5,11 @@ import { Route, Redirect, withRouter } from 'react-router-dom';
 // Passed in from parent component or from mapStateToProps
 const Auth = ({ component: Component, path, loggedIn, exact }) => (
   <Route path={path} exact={exact} render={(props) => (
-    !loggedIn ? (
-      <Component {...props} />
-    ) : (
-        // Redirect to the tweets page if the user is authenticated
+    loggedIn ? (
+      // Redirect to the tweets page if the user is authenticated
       <Redirect to="/tweets" />
+    ) : (
+      <Component {...props} />
     )
   )} />
 );
@@ -21,7 +21,7 @@ const Protected = ({ component: Component, loggedIn, ...rest }) => (
       loggedIn ? (
         <Component {...props} />
       ) : (
-        // Redirect to the login page if the user is already authenticated
+        // Redirect to the login page if the user is not authenticated
         <Redirect to="/login" />
       )
     }
@@ -29,11 +29,13 @@ const Protected = ({ component: Component, loggedIn, ...rest }) => (
 );
 
 // Use the isAuthenitcated slice of state to determine whether a user is logged in
-
+// TODO: confirm if it is good practice to also use isSignedIn. 
+    // not really because we are using the bool in the session slice of state
+    // to simply redirect the user to the login page after creating an account
 const mapStateToProps = state => (
-  {loggedIn: state.session.isAuthenticated || state.session.isSignedIn}
+  // {loggedIn: state.session.isAuthenticated || state.session.isSignedIn}
+  {loggedIn: state.session.isAuthenticated}
 );
 
 export const AuthRoute = withRouter(connect(mapStateToProps)(Auth));
-
 export const ProtectedRoute = withRouter(connect(mapStateToProps)(Protected));

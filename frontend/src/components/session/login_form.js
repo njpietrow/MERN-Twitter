@@ -15,13 +15,17 @@ class LoginForm extends React.Component {
     this.renderErrors = this.renderErrors.bind(this);
   }
 
-  // Once the user has been authenticated, redirect to the Tweets page
+  // Once the user has been authenticated, redirect to the Tweets page.
+  // N.B. Hitting the login endpoint is the only way to get authenticated in this app.
+  // componentwillreceiveprops has been deprecated and should be changed to a 
+  // diff lifecycle method
   componentWillReceiveProps(nextProps) {
     if (nextProps.currentUser === true) {
       this.props.history.push('/tweets');
     }
 
     // Set or clear errors
+    // TODO: this should be a assigned within component did update
     this.setState({errors: nextProps.errors})
   }
 
